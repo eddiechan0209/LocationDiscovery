@@ -39,8 +39,8 @@ db.define_table(
     Field('user_id', 'reference auth_user'),
     Field('post_title', requires=IS_NOT_EMPTY()),
     Field('post_description'),
-    Field('latitude', requires=IS_NOT_EMPTY()),
-    Field('longitude', requires=IS_NOT_EMPTY()),
+    Field('latitude', requires=IS_FLOAT_IN_RANGE(-90, 90)),
+    Field('longitude',  requires=IS_FLOAT_IN_RANGE(-180, 180)),
     )
 
 db.define_table(
