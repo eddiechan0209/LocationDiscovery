@@ -84,6 +84,7 @@ elif settings.SESSION_TYPE == "database":
 auth = Auth(session, db, define_tables=False,
             extra_fields = [
                 Field('username'),
+                Field('bio')
             ])
 
 # Fixes the messages.

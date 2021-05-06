@@ -24,15 +24,15 @@ def get_user_last_name():
 # db.define_table('thing', Field('name'))
 #
 ## always commit your models to avoid problems later
-db.define_table(
-    'user_info', 
-    # Field('user_id', 'reference auth_user'),
-    Field('FirstName'),
-    Field('LastName', default=get_user_last_name, requires=IS_NOT_EMPTY()),
-    Field('Username', requires=IS_NOT_EMPTY()),
-    Field('Email', default=get_user_email),
-    Field('Bio'),
-)
+# db.define_table(
+#     'user_info',
+#     # Field('user_id', 'reference auth_user'),
+#     Field('FirstName'),
+#     Field('LastName', default=get_user_last_name, requires=IS_NOT_EMPTY()),
+#     Field('Username', requires=IS_NOT_EMPTY()),
+#     Field('Email', default=get_user_email),
+#     Field('Bio'),
+# )
 
 db.define_table(
     'post',
@@ -45,14 +45,18 @@ db.define_table(
 
 db.define_table(
     'friends',
-    Field('friender_id'),
-    Field('FriendAdded_id')
+    Field('friender_id', 'reference auth_user'),
+    Field('FriendAdded_id', 'reference auth_user')
 )
+
+# define another table for photos
+# have a reference to post
 
 db.define_table(
     'requests',
-    Field('requester_id'),
-    Field('active', 'boolean')
+    Field('requester_id', 'reference auth_user'),
+    Field('active', 'boolean'),
+    Field('target_id', 'reference auth_user')
 )
 
 db.commit()
